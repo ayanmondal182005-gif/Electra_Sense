@@ -12,4 +12,4 @@ def home():
 
 if __name__ == '__main__':
     # Runs the app in debug mode for development
-    app.run(debug=True)
+    app.run(debug=True) 
