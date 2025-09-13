@@ -107,18 +107,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Logic for Password Visibility Toggle on Auth Pages ---
+    // --- Logic for Sign Up Form Validation ---
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
+        const email = document.getElementById('email-address');
+        const password = document.getElementById('password');
+        const passwordConfirm = document.getElementById('password-confirm');
+
+        const validateField = (field, condition) => {
+            if (condition) {
+                field.classList.add('valid');
+                field.classList.remove('invalid');
+            } else {
+                field.classList.add('invalid');
+                field.classList.remove('valid');
+            }
+        };
+
+        email.addEventListener('input', () => {
+            const isValid = email.value.includes('@') && email.value.includes('.') && email.value.length > 5;
+            validateField(email, isValid);
+        });
+
+        password.addEventListener('input', () => {
+            const isValid = password.value.length >= 8;
+            validateField(password, isValid);
+            // Also validate the confirm password field whenever the main password changes
+            const isConfirmValid = password.value === passwordConfirm.value && passwordConfirm.value.length > 0;
+            validateField(passwordConfirm, isConfirmValid);
+        });
+
+        passwordConfirm.addEventListener('input', () => {
+            const isValid = password.value === passwordConfirm.value && passwordConfirm.value.length > 0;
+            validateField(passwordConfirm, isValid);
+        });
+    }
+    
+    // --- Logic for Password Visibility Toggle on ALL Auth Pages ---
     const passwordToggles = document.querySelectorAll('.password-toggle');
     if (passwordToggles.length > 0) {
         passwordToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const passwordInput = toggle.previousElementSibling;
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    toggle.textContent = 'visibility_off';
-                } else {
-                    passwordInput.type = 'password';
-                    toggle.textContent = 'visibility';
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent form submission
+                // Find the input field within the same parent container
+                const passwordInput = toggle.closest('.relative').querySelector('input');
+                if (passwordInput && (passwordInput.type === 'password' || passwordInput.type === 'text')) {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        toggle.textContent = 'visibility_off';
+                    } else {
+                        passwordInput.type = 'password';
+                        toggle.textContent = 'visibility';
+                    }
                 }
             });
         });
