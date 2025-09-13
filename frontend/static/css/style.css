@@ -1,12 +1,20 @@
+/* --- Global Variables & Styles --- */
 :root {
     --primary-color: #13a4ec;
 }
 
+/* --- General Element Styles --- */
+body {
+    scroll-behavior: smooth;
+}
+
+/* Style to control the size of the logo in the header */
 .logo-img {
     height: 32px;
     width: auto;
 }
 
+/* --- Page Sections --- */
 .hero-section {
     background-image:
         linear-gradient(rgba(17, 22, 24, 0.7), rgba(17, 22, 24, 0.9)),
@@ -16,10 +24,11 @@
     background-repeat: no-repeat;
 }
 
+/* --- Component Styles --- */
 .form-container {
     background-color: rgba(28, 35, 39, 0.5);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
     border: 1px solid rgba(59, 75, 84, 0.5);
     border-radius: 16px;
     padding: 2.5rem;
@@ -31,5 +40,54 @@
     border: 1px solid #3b4b54;
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* --- Gemini Feature Styles --- */
+.gemini-button {
+    background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+    color: #111618;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 15px rgba(102, 166, 255, 0.3);
+}
+
+.gemini-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 166, 255, 0.5);
+}
+
+/* Loading Spinner Animation */
+.loader {
+    border: 4px solid #30363d; /* Light grey */
+    border-top: 4px solid var(--primary-color); /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Auth Page Styles --- */
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.2s;
+}
+
+.password-toggle:hover {
+    color: #fff;
 }
 

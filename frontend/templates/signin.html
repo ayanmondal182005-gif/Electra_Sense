@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="flex min-h-screen items-center justify-center bg-[#0d1117] px-4">
+    <div class="w-full max-w-sm space-y-8">
+        <div class="text-center">
+            <a href="{{ url_for('signin') }}" class="flex justify-center items-center gap-3 mb-4 text-white">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Electra Sense Logo" class="logo-img">
+                <h1 class="text-2xl font-bold tracking-tight">Electra Sense</h1>
+            </a>
+            <h2 class="text-3xl font-bold tracking-tight text-white">Welcome back</h2>
+            <p class="mt-2 text-sm text-gray-400">Log in to predict your electricity bill.</p>
+        </div>
+        
+        <!-- This form's 'action' now correctly points to the '/home' page -->
+        <form class="space-y-6 rounded-lg bg-[#161b22] p-8 shadow-2xl" action="{{ url_for('home') }}" method="GET">
+            <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-300" for="email">Email address</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">mail</span>
+                    <input class="form-input block w-full rounded-md border-0 bg-[#0d1117] py-3 pl-10 pr-3 text-white ring-1 ring-inset ring-[#30363d] placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:text-sm" id="email" name="email" placeholder="you@example.com" required type="email" />
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="text-sm font-medium text-gray-300" for="password">Password</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">lock</span>
+                    <input class="form-input block w-full rounded-md border-0 bg-[#0d1117] py-3 pl-10 pr-3 text-white ring-1 ring-inset ring-[#30363d] placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] sm:text-sm" id="password" name="password" placeholder="••••••••" required type="password" />
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input class="form-checkbox size-4 rounded bg-[#0d1117] border-[#30363d] text-[var(--primary-color)] focus:ring-[var(--primary-color)]" id="remember-me" name="remember-me" type="checkbox" />
+                    <label class="ml-2 block text-sm text-gray-300" for="remember-me">Remember me</label>
+                </div>
+                <div class="text-sm">
+                    <a class="font-medium text-[var(--primary-color)] hover:text-opacity-80" href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div>
+                <button class="flex w-full justify-center rounded-md bg-[var(--primary-color)] px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80" type="submit">
+                    Log In
+                </button>
+            </div>
+        </form>
+        <p class="text-center text-sm text-gray-400">
+            Don't have an account?
+            <a class="font-medium text-[var(--primary-color)] hover:text-opacity-80" href="{{ url_for('signup') }}">
+                Sign up
+            </a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+
