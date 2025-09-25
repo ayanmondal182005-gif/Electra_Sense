@@ -1,6 +1,11 @@
+/* --- Global Variables & Styles --- */
 :root {
     --primary-color: #13a4ec;
     --primary-color-hover: #0b8dce;
+}
+
+body {
+    scroll-behavior: smooth;
 }
 
 .logo-img {
@@ -128,3 +133,4 @@
 .form-input:not(:placeholder-shown).invalid ~ .password-toggle {
     right: 3rem;
 }
+
